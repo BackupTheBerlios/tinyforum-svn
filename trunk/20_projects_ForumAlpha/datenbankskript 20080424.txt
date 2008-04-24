@@ -1,0 +1,79 @@
+-- phpMyAdmin SQL Dump
+-- version 2.7.0-pl1
+-- http://www.phpmyadmin.net
+-- 
+-- Host: localhost
+-- Erstellungszeit: 24. April 2008 um 19:46
+-- Server Version: 5.0.18
+-- PHP-Version: 5.1.1
+-- 
+-- Datenbank: `phpforum`
+-- 
+
+-- --------------------------------------------------------
+
+-- 
+-- Tabellenstruktur für Tabelle `beitraege`
+-- 
+
+DROP TABLE IF EXISTS `beitraege`;
+CREATE TABLE `beitraege` (
+  `beitragsnr` int(11) NOT NULL,
+  `thema` varchar(40) NOT NULL,
+  `nickname` varchar(20) NOT NULL,
+  `text` varchar(2000) NOT NULL,
+  `b_zeitpunkt` datetime NOT NULL,
+  PRIMARY KEY  (`beitragsnr`,`thema`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- 
+-- Daten für Tabelle `beitraege`
+-- 
+
+INSERT INTO `beitraege` (`beitragsnr`, `thema`, `nickname`, `text`, `b_zeitpunkt`) VALUES (1, 'Test', 'Edi', 'Hier ist der erste Eintrag', '2008-04-16 14:30:42');
+INSERT INTO `beitraege` (`beitragsnr`, `thema`, `nickname`, `text`, `b_zeitpunkt`) VALUES (2, 'Test', 'Edi', 'Dies ist der zweite Eintrag', '2008-04-16 15:12:30');
+
+-- --------------------------------------------------------
+
+-- 
+-- Tabellenstruktur für Tabelle `benutzer`
+-- 
+
+DROP TABLE IF EXISTS `benutzer`;
+CREATE TABLE `benutzer` (
+  `nickname` varchar(20) NOT NULL,
+  `passwort` binary(40) NOT NULL,
+  `email` varchar(40) NOT NULL,
+  `icq` varchar(15) NOT NULL,
+  `aktiviert` tinyint(1) NOT NULL,
+  PRIMARY KEY  (`nickname`,`passwort`,`email`,`aktiviert`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- 
+-- Daten für Tabelle `benutzer`
+-- 
+
+INSERT INTO `benutzer` (`nickname`, `passwort`, `email`, `icq`, `aktiviert`) VALUES ('andre', 0x62633938303062396435326132346363653732613733646435323861666564353366313065356663, 'asdf@asdf.at', '123123123', 0);
+INSERT INTO `benutzer` (`nickname`, `passwort`, `email`, `icq`, `aktiviert`) VALUES ('Dummy', 0x38333464363162316535616666376638326434656639653833316461663063666132383261613862, 'dummy@dummy.com', '12341234', 1);
+INSERT INTO `benutzer` (`nickname`, `passwort`, `email`, `icq`, `aktiviert`) VALUES ('edi', 0x62613639303537313234636261333636653463643038373364306266363037613332383031306261, 'edi@edi.edi', '435234', 1);
+
+-- --------------------------------------------------------
+
+-- 
+-- Tabellenstruktur für Tabelle `themen`
+-- 
+
+DROP TABLE IF EXISTS `themen`;
+CREATE TABLE `themen` (
+  `thema` varchar(40) NOT NULL,
+  `zugriffe` int(11) default NULL,
+  `t_zeitpunkt` datetime default NULL,
+  PRIMARY KEY  (`thema`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- 
+-- Daten für Tabelle `themen`
+-- 
+
+INSERT INTO `themen` (`thema`, `zugriffe`, `t_zeitpunkt`) VALUES ('Test', 0, '2008-04-16 14:29:57');
+INSERT INTO `themen` (`thema`, `zugriffe`, `t_zeitpunkt`) VALUES ('Pook', 0, '2008-04-16 15:36:43');
