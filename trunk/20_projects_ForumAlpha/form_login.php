@@ -32,10 +32,12 @@ if (istEingeloggt() == true)
 		{
 					echo "&bull;false<br>";
 					echo '&bull;FORM_LOGIN.php # ZERSTÖRE DIE SESSION...<br>';
-					
-			session_unregister("nickname");
-			session_unregister("passwort");
-			session_destroy();
+			
+			// der folgende code wird ab jetzt durch ein include ersetzt:		
+//			session_unregister("nickname");
+//			session_unregister("passwort");
+//			session_destroy();
+			include "Button_AbmeldenTrue.php";
 		}
 	} else {
 					echo "&bull;false<br>";
