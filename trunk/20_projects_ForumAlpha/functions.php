@@ -13,4 +13,12 @@ function istEingeloggt()
 		return false;
 	}
 }
+
+function zerstoereSession()
+{
+		echo "INDEX.php # DEREGISTRIEREN DER SESSION...<br>";
+		session_unregister("nickname");
+		session_unregister("passwort");
+		session_destroy();
+}
 ?>

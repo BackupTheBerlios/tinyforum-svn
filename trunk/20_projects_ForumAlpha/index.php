@@ -20,11 +20,11 @@ if (istEingeloggt() == true)
 							echo 'INDEX.php # schaue nach ob isset ($_POST["abmelden"]):<br>';
 	if (isset ($_POST["abmelden"]))
 	{
-		include "Button_AbmeldenTrue.php"	;				
+		zerstoereSession();				
 	} else
 	{
 
-		include "Button_AbmeldenFalse.php";
+		include "form_abmeldebutton.php";
 	}
 	
 }
