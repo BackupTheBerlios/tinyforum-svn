@@ -1,12 +1,18 @@
-(usecase] : [parametername] : [S = session, P = post]
+(usecase] : [parametername] : [S = session, P = post] if()
 
-anmelden : nickname : P
+
+anmelden : nickname : P	
 anmelden : passwort : P
 anmelden : ( Einloggen ) : P
 
 angemeldet : nickname : S
 angemeldet : passwort : S
 
-abmelden : abmelden : P
+abmelden : abmelden : P if(abmelde-Button in POST-Array)
 
-themenliste anschauen : themenliste : P
+
+themenliste anschauen : themenliste : P if(showBeitrag-Variable in Session-Array == false)
+
+
+
+beit
