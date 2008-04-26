@@ -5,5 +5,5 @@ error_reporting(0);
 session_start();
 						echo '&bull;SESSION.php # session_set_cookie_params(20);<br>';
 session_set_cookie_params(20);
-						echo "edi ist schwul";
+						
 ?>

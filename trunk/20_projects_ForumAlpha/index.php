@@ -26,6 +26,7 @@ if (istEingeloggt() == true)
 
 		include "Button_AbmeldenFalse.php";
 	}
+	
 }
 else{
 							echo "false<br>";
