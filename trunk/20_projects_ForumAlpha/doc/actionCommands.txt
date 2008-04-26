@@ -1,0 +1,12 @@
+(usecase] : [parametername] : [S = session, P = post]
+
+anmelden : nickname : P
+anmelden : passwort : P
+anmelden : ( Einloggen ) : P
+
+angemeldet : nickname : S
+angemeldet : passwort : S
+
+abmelden : abmelden : P
+
+themenliste anschauen : themenliste : P
