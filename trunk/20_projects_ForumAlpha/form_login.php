@@ -1,56 +1,53 @@
 <?php
-					echo "&bull;FORM_LOGIN.php # start<br>";
+echo "&bull;FORM_LOGIN.php # start<br>";
 
 $zeigeloginform = true;
 
-					echo "&bull;FORM_LOGIN.php # schaue ob istEingeloggt()<br>";
+echo "&bull;FORM_LOGIN.php # ist der user eingeloggt?<br>";
 if (istEingeloggt() == true)
 {
-					echo "&bull;true<br>";
+	echo "&bull;ja<br>";
 
 	$zeigeloginform = false;
-} else
+}
+else
 {
-					echo "&bull;false<br>";
-					echo '&bull;FORM_LOGIN.php # schaue ob isset ($_POST["login_nickname"]) and isset ($_POST["login_passwort"])<br>';
+	echo "&bull;nein<br>";
+	echo '&bull;FORM_LOGIN.php # ist nickname und passwort im request?<br>';
 	if (isset ($_POST["login_nickname"]) and isset ($_POST["login_passwort"]))
 	{
-					echo "&bull;true<br>";
-					echo '&bull;FORM_LOGIN.php # schaue ob loginOk($_POST["login_nickname"], $_POST["login_passwort"])<br>';
+		echo "&bull;ja<br>";
+		echo '&bull;FORM_LOGIN.php # ist nickname und passwort korrekt?<br>';
 		if (loginOk($_POST["login_nickname"], $_POST["login_passwort"]))
 		{
-					echo "&bull;true<br>";
-					
-					echo '&bull;FORM_LOGIN.php # setze $_SESSION["nickname"] und $_SESSION["passwort"] <br>';
+			echo "&bull;ja<br>";
+
+			echo '&bull;FORM_LOGIN.php # SCHREIBE NICKNAME UND PASSWORT IN DIE SESSION. <br>';
 			session_register("nickname");
 			$_SESSION["nickname"] = $_POST["login_nickname"];
 			session_register("passwort");
 			$_SESSION["passwort"] = $_POST["login_passwort"];
-					echo '&bull;FORM_LOGIN.php # setze $zeigeloginform = false <br>';
+			echo '&bull;FORM_LOGIN.php # verhindere das anzeigen der loginform<br>';
 			$zeigeloginform = false;
-		} else
+		}
+		else
 		{
-					echo "&bull;false<br>";
-					echo '&bull;FORM_LOGIN.php # ZERSTÖRE DIE SESSION...<br>';
-			
-			// der folgende code wird ab jetzt durch eine function ersetzt:		
-//			session_unregister("nickname");
-//			session_unregister("passwort");
-//			session_destroy();
+			echo "&bull;nein<br>";
+			echo '&bull;FORM_LOGIN.php # ZERSTÖRE DIE SESSION.<br>';
 			zerstoereSession();
 		}
-	} else {
-					echo "&bull;false<br>";
 	}
-	
-	
-					echo '&bull;FORM_LOGIN.php # schaue nach ob $zeigeloginform==true<br>';
-	if($zeigeloginform==true)
+	else
 	{
-					echo "&bull;true<br>";
-					echo '&bull;FORM_LOGIN.php # ZEIGE DIE LOGINFORM...<br>';
-?>
+		echo "&bull;nein<br>";
+	}
 
+	echo '&bull;FORM_LOGIN.php # soll die loginform angezeigt werden?<br>';
+	if ($zeigeloginform == true)
+	{
+		echo "&bull;ja<br>";
+		echo '&bull;FORM_LOGIN.php # ZEIGE DIE LOGINFORM.<br>';
+		echo '
 <form action="index.php" method="post">
   <table>
     <tr>
@@ -71,14 +68,11 @@ if (istEingeloggt() == true)
     	</td>
     </tr>
   </table>
-</form>
-
-<?
-
-
+</form>';
 	}
-	else{
-					echo "&bull;false<br>";
+	else
+	{
+		echo "&bull;nein<br>";
 	}
 
 }
@@ -98,11 +92,12 @@ function loginOk($nickname, $passwort)
 	{
 		//ein ergebnis wurde gefunden!
 		return true;
-	} else
+	}
+	else
 	{
 		// es konnte kein entsprechender datensatz gefunden werden!
 		return false;
 	}
 }
-					echo "&bull;FORM_LOGIN.php # ende<br>";
+echo "&bull;FORM_LOGIN.php # ende<br>";
 ?>
