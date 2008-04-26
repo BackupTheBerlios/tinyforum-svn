@@ -27,6 +27,18 @@ if (istEingeloggt() == true)
 		include "form_abmeldebutton.php";
 	}
 	
+	//Userverwaltung
+	if(true)
+	{
+		
+	}
+	//Themenliste
+	else if(true)
+	{
+		
+	}
+	
+	
 }
 else{
 							echo "false<br>";
