@@ -20,20 +20,11 @@ if (istEingeloggt() == true)
 							echo 'INDEX.php # schaue nach ob isset ($_POST["abmelden"]):<br>';
 	if (isset ($_POST["abmelden"]))
 	{
-							echo "true<br>";
-							echo "INDEX.php # DEREGISTRIEREN DER SESSION...<br>";
-		session_unregister("nickname");
-		session_unregister("passwort");
-		session_destroy();
+		include "Button_AbmeldenTrue.php"	;				
 	} else
 	{
-							echo "false<br>";
-							echo "INDEX.php # ANZEIGEN DES ABMELDEBUTTONS...<br>";
-?>
-	<form action="index.php" method="post">
-  		<input type="submit" name="abmelden" value="Abmelden"/>
-  	</form>
-<?
+
+		include "Button_AbmeldenFalse.php";
 	}
 }
 else{
