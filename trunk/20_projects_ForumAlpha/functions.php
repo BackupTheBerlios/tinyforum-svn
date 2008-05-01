@@ -1,10 +1,9 @@
 <?php
-				echo "&bull;FUNCTIONS.php # registriere die Functions...<br>";
+say( "FUNCTIONS.php # registriere die Functions",1);
 session_start();
 function istEingeloggt()
 {
-	if(		isset($_SESSION["nickname"]) 
-		and isset($_SESSION["passwort"])	)
+	if (isset ($_SESSION["nickname"]) and isset ($_SESSION["passwort"]))
 	{
 		return true;
 	}
@@ -17,9 +16,9 @@ function istEingeloggt()
 function zerstoereSession()
 {
 
-		echo 'SESSION ZERSTÖRT!!!!!!!!!!!!!!!!!!!';
-		session_unregister("nickname");
-		session_unregister("passwort");
-		session_unset();
+	echo 'SESSION ZERSTÖRT!!!!!!!!!!!!!!!!!!!';
+	session_unregister("nickname");
+	session_unregister("passwort");
+	session_unset();
 }
 ?>
