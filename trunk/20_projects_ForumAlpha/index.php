@@ -1,69 +1,73 @@
 <?php
-session_start();
-echo "INDEX.php # start<br><br>";
+include "debug.php";
 
-echo "INDEX.php # includen von session.php<br>";
+session_start();
+
+say("INDEX.php # start", 0);
+
+say("INDEX.php # includen von session.php", 0);
 include "session.php";
 
-echo "<br>INDEX.php # includen von functions.php<br>";
+say("<br>INDEX.php # includen von functions.php", 0);
 include "functions.php";
 
-echo "<br>INDEX.php # includen von form_login.php<br>";
+say("<br>INDEX.php # includen von form_login.php", 0);
 include "form_login.php";
-echo "<br><br>INDEX.php # ist der user eingeloggt?<br>";
+
+say("<br><br>INDEX.php # ist der user eingeloggt?", 0);
 if (istEingeloggt() == true)
 {
-	echo "ja<br>";
-	echo 'INDEX.php # schaue nach ob isset ($_POST["abmelden"]):<br>';
+	say("ja<br>", 0);
+	say('INDEX.php # schaue nach ob isset ($_POST["abmelden"]):', 0);
 
 	// WURDE DER ABMELDE_BUTTON ANGEKLICKT ?
-	echo 'INDEX.php # wurde der ABMELDE_BUTTON geklickt?<br>';
+	say('INDEX.php # wurde der ABMELDE_BUTTON geklickt?', 0);
 	if (isset ($_POST["abmelden"]))
 	{
-		echo "ja<br>";
+		say("ja", 0);
 		zerstoereSession();
 	}
 	else
 	{
 		//TODO: dieser button muss ganz unten angezeigt werden!
-		echo "nein<br>";
+		say("nein", 0);
 		include "form_abmeldebutton.php";
 	}
 
 	// WURDE DER THEMEN_BUTTON ANGEKLICKT ?
-	echo 'INDEX.php # wurde der THEMEN_BUTTON geklickt?<br>';
+	say('INDEX.php # wurde der THEMEN_BUTTON geklickt?', 0);
 	if (isset ($_POST["themen"]))
 	{
-		echo "ja<br>";
+		say("ja", 0);
 		include "form_themen.php";
 	}
 	else
 	{
-		echo "nein<br>";
+		say("nein", 0);
 	}
 
 	// WURDE DER BENUTZER_BUTTON ANGEKLICKT ?
-	echo 'INDEX.php # wurde der BENUTZER_BUTTON geklickt?<br>';
+	say('INDEX.php # wurde der BENUTZER_BUTTON geklickt?<br>', 0);
 	if (isset ($_POST["benutzer"]))
 	{
-		echo "nein<br>";
+		say("nein", 0);
 		include "form_benutzer.php";
 	}
 	else
 	{
-		echo "nein<br>";
+		say("nein", 0);
 	}
 }
 else
 {
-	echo "nein<br>";
+	say("nein", 0);
 }
-echo "INDEX.php # ende<br>";
+say("INDEX.php # ende", 0);
 
 //ZUM DEBUGGEN:
-echo "<br>@@@@@@@@@@@@@@@@@@@@@@@@@@<br><br>POST:<br>";
+say("<br>@@@@@@@@@@@@@@@@@@@@@@@@@@<br><br>POST:<br>", 0);
 print_r($_POST);
-echo "<br><br>SESSION:<br>";
+say("<br><br>SESSION:<br>", 0);
 print_r($_SESSION);
 ?>
 <!-- hier werden zu testzwecken buttons definiert:-->
