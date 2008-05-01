@@ -3,50 +3,51 @@ echo "&bull;FORM_LOGIN.php # start<br>";
 
 $zeigeloginform = true;
 
-echo "&bull;FORM_LOGIN.php # ist der user eingeloggt?<br>";
+										echo "&bull;FORM_LOGIN.php # ist der user eingeloggt?<br>";
 if (istEingeloggt() == true)
 {
-	echo "&bull;ja<br>";
+												echo "&bull;ja<br>";
 
 	$zeigeloginform = false;
 }
 else
 {
-	echo "&bull;nein<br>";
-	echo '&bull;FORM_LOGIN.php # ist nickname und passwort im request?<br>';
+									echo "&bull;nein<br>";
+									echo '&bull;FORM_LOGIN.php # ist nickname und passwort im request?<br>';
 	if (isset ($_POST["login_nickname"]) and isset ($_POST["login_passwort"]))
 	{
-		echo "&bull;ja<br>";
-		echo '&bull;FORM_LOGIN.php # ist nickname und passwort korrekt?<br>';
+										echo "&bull;ja<br>";
+											echo '&bull;FORM_LOGIN.php # ist nickname und passwort korrekt?<br>';
 		if (loginOk($_POST["login_nickname"], $_POST["login_passwort"]))
 		{
-			echo "&bull;ja<br>";
+													echo "&bull;ja<br>";
 
-			echo '&bull;FORM_LOGIN.php # SCHREIBE NICKNAME UND PASSWORT IN DIE SESSION. <br>';
+													echo '&bull;FORM_LOGIN.php # SCHREIBE NICKNAME UND PASSWORT IN DIE SESSION. <br>';
 			session_register("nickname");
 			$_SESSION["nickname"] = $_POST["login_nickname"];
 			session_register("passwort");
 			$_SESSION["passwort"] = $_POST["login_passwort"];
-			echo '&bull;FORM_LOGIN.php # verhindere das anzeigen der loginform<br>';
+															echo '&bull;FORM_LOGIN.php # verhindere das anzeigen der loginform<br>';
 			$zeigeloginform = false;
 		}
 		else
 		{
-			echo "&bull;nein<br>";
-			echo '&bull;FORM_LOGIN.php # ZERSTÖRE DIE SESSION.<br>';
-			zerstoereSession();
+																	echo "&bull;nein<br>";
+														echo '&bull;FORM_LOGIN.php # ZERSTÖRE DIE SESSION.<br>';
+//			zerstoereSession();
 		}
 	}
 	else
 	{
-		echo "&bull;nein<br>";
+														echo "&bull;nein<br>";
+		$zeigeloginform = true;
 	}
 
-	echo '&bull;FORM_LOGIN.php # soll die loginform angezeigt werden?<br>';
+													echo '&bull;FORM_LOGIN.php # soll die loginform angezeigt werden?<br>';
 	if ($zeigeloginform == true)
 	{
-		echo "&bull;ja<br>";
-		echo '&bull;FORM_LOGIN.php # ZEIGE DIE LOGINFORM.<br>';
+								echo "&bull;ja<br>";
+								echo '&bull;FORM_LOGIN.php # ZEIGE DIE LOGINFORM.<br>';
 		echo '
 <form action="index.php" method="post">
   <table>
