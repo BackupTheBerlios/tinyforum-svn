@@ -16,9 +16,24 @@ function istEingeloggt()
 function zerstoereSession()
 {
 
-	say(  'SESSION ZERSTÖRT!!!!!!!!!!!!!!!!!!!',2);
+	echo 'SESSION ZERSTÖRT!!!!!!!!!!!!!!!!!!!';
 	session_unregister("nickname");
 	session_unregister("passwort");
 	session_unset();
+}
+
+function benutzerbutton()
+{
+	echo '	<form action="index.php" method="post">
+  				<input type="submit" name="benutzer" value="benutzerbearbeiten"/>
+			</form>';
+}
+
+
+function themenbutton()
+{
+	echo '	<form action="index.php" method="post">
+  				<input type="submit" name="themen" value="Themenliste anzeigen"/>
+			</form>';
 }
 ?>
