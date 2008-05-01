@@ -1,6 +1,6 @@
 <?php
 echo "&bull;FORM_LOGIN.php # start<br>";
-
+session_start();
 $zeigeloginform = true;
 
 										echo "&bull;FORM_LOGIN.php # ist der user eingeloggt?<br>";

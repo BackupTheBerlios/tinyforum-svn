@@ -1,6 +1,6 @@
 <?php
 				echo "&bull;FUNCTIONS.php # registriere die Functions...<br>";
-
+session_start();
 function istEingeloggt()
 {
 	if(		isset($_SESSION["nickname"]) 
@@ -20,6 +20,6 @@ function zerstoereSession()
 		echo 'SESSION ZERSTÖRT!!!!!!!!!!!!!!!!!!!';
 		session_unregister("nickname");
 		session_unregister("passwort");
-		session_destroy();
+		session_unset();
 }
 ?>

@@ -1,4 +1,5 @@
 <?php
+session_start();
 echo "INDEX.php # start<br><br>";
 
 echo "INDEX.php # includen von session.php<br>";
@@ -9,7 +10,6 @@ include "functions.php";
 
 echo "<br>INDEX.php # includen von form_login.php<br>";
 include "form_login.php";
-
 echo "<br><br>INDEX.php # ist der user eingeloggt?<br>";
 if (istEingeloggt() == true)
 {
