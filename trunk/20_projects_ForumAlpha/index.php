@@ -47,8 +47,8 @@ if (istEingeloggt() == true)
 		}
 
 		// WURDE DER BENUTZER_BUTTON ANGEKLICKT ?
-		say('INDEX.php # wurde der BENUTZER_BUTTON geklickt?', 0);
-		if (isset ($_POST["benutzer"]))
+		say('INDEX.php # wurde der BENUTZER_BUTTON geklickt?', 0); 
+		if (isset ($_POST["benutzer"])) 
 		{
 			say("nein", 0);
 			include "form_benutzer.php";
