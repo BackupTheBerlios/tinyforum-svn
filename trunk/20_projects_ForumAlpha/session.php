@@ -1,9 +1,9 @@
 <?php
-						echo '&bull;SESSION.php # error_reporting(0);<br>';
+						say( 'SESSION.php # error_reporting(0);',1);
 error_reporting(0);
-						echo '&bull;SESSION.php # session_start();<br>';
+						say(  'SESSION.php # session_start();',1);
 session_start();
-						echo '&bull;SESSION.php # session_set_cookie_params(20);<br>';
+						say(  'SESSION.php # session_set_cookie_params(20);',1);
 session_set_cookie_params(120);
 						
 ?>
