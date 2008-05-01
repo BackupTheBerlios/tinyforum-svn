@@ -18,44 +18,45 @@ say("<br><br>INDEX.php # ist der user eingeloggt?", 0);
 if (istEingeloggt() == true)
 {
 	say("ja<br>", 0);
-	say('INDEX.php # schaue nach ob isset ($_POST["abmelden"]):', 0);
 
 	// WURDE DER ABMELDE_BUTTON ANGEKLICKT ?
-	say('INDEX.php # wurde der ABMELDE_BUTTON geklickt?', 0);
+	say('INDEX.php # wurde der ABMELDE_BUTTON geklickt?', 1);
 	if (isset ($_POST["abmelden"]))
 	{
-		say("ja", 0);
+		say("ja", 1);
 		zerstoereSession();
 	}
 	else
 	{
 		//TODO: dieser button muss ganz unten angezeigt werden!
-		say("nein", 0);
+		say("nein", 1);
+		say("binde form_abmeldebutton ein",2);
 		include "form_abmeldebutton.php";
 	}
 
 	// WURDE DER THEMEN_BUTTON ANGEKLICKT ?
-	say('INDEX.php # wurde der THEMEN_BUTTON geklickt?', 0);
+	say('INDEX.php # wurde der THEMEN_BUTTON geklickt?', 1);
 	if (isset ($_POST["themen"]))
 	{
-		say("ja", 0);
+		say("ja", 1);
+		say("binde themenseite ein",2);
 		include "form_themen.php";
 	}
 	else
 	{
-		say("nein", 0);
+		say("nein", 1);
 	}
 
 	// WURDE DER BENUTZER_BUTTON ANGEKLICKT ?
 	say('INDEX.php # wurde der BENUTZER_BUTTON geklickt?<br>', 0);
 	if (isset ($_POST["benutzer"]))
 	{
-		say("nein", 0);
+		say("nein", 1);
 		include "form_benutzer.php";
 	}
 	else
 	{
-		say("nein", 0);
+		say("nein", 1);
 	}
 }
 else

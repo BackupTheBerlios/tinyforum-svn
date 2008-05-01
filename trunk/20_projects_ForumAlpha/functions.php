@@ -16,7 +16,7 @@ function istEingeloggt()
 function zerstoereSession()
 {
 
-	echo 'SESSION ZERSTÖRT!!!!!!!!!!!!!!!!!!!';
+	say(  'SESSION ZERSTÖRT!!!!!!!!!!!!!!!!!!!',2);
 	session_unregister("nickname");
 	session_unregister("passwort");
 	session_unset();
