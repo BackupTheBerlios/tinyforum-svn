@@ -33,9 +33,9 @@ if (istEingeloggt() == true)
 		say("nein", 0);
 		include "form_abmeldebutton.php";
 
-		// WURDE DER THEMEN_BUTTON ANGEKLICKT ?
+		// WURDE DER THEMEN_BUTTON ANGEKLICKT ? ODER WURDE Sessionvar(themenflag) im form_thema gesetzt?
 		say('INDEX.php # wurde der THEMEN_BUTTON geklickt?', 0);
-		if (isset ($_POST["themen"]))
+		if (isset ($_POST["themen"]) OR isset($_SESSION["themenFlag"]))
 		{
 			say("ja", 0);
 			include "form_themen.php";
@@ -50,6 +50,7 @@ if (istEingeloggt() == true)
 		say('INDEX.php # wurde der BENUTZER_BUTTON geklickt?', 0); 
 		if (isset ($_POST["benutzer"])) 
 		{
+			//Damit wird ThemenModus beendet
 			say("nein", 0);
 			include "form_benutzer.php";
 		}
