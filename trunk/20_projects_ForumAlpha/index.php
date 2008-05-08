@@ -1,4 +1,12 @@
 <?php
+
+/*
+ * beschreibung, authors, etc
+ * 
+ * 
+ * 
+ * */
+
 include "debug.php";
 
 session_start();
@@ -33,12 +41,28 @@ if (istEingeloggt() == true)
 		say("nein", 0);
 		include "form_abmeldebutton.php";
 
+		say("Soll themenFlag gelöscht werden?",0);
+		//Überprüft ob der User zurück auf die Startseite will.
+		//NOCH NICHT IM ABLAUFDIAGRAMM
+		if(isset($_POST["fromthemabacktoindex"]) OR isset($_POST["benutzer"]))
+		{
+			say("ThemenFlag wurde gelöscht", 1);
+			session_unregister("themenFlag");
+			say("ja<br><br>",1);
+		}
+		else
+		{
+			say("nein<br><br>",1);
+		}
+		say('INDEX.php # wurde der THEMEN_BUTTON geklickt oder ThemenFlag = true?', 0);
 		// WURDE DER THEMEN_BUTTON ANGEKLICKT ? ODER WURDE Sessionvar(themenflag) im form_thema gesetzt?
-		say('INDEX.php # wurde der THEMEN_BUTTON geklickt?', 0);
+		//Noch nicht im Ablaufdiagramm erneuert
 		if (isset ($_POST["themen"]) OR isset($_SESSION["themenFlag"]))
 		{
 			say("ja", 0);
+			echo '<hr>';
 			include "form_themen.php";
+			echo '<hr>';
 		}
 		else
 		{
@@ -73,8 +97,6 @@ print_r($_POST);
 say("<br><br>SESSION:<br>", 0);
 print_r($_SESSION);
 ?>
-
- 
 
 
 
