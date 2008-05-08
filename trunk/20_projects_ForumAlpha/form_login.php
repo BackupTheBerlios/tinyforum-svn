@@ -7,7 +7,7 @@ $zeigeloginform = true;
 say("FORM_LOGIN.php # ist der user eingeloggt?", 1);
 if (istEingeloggt() == true)
 {
-	say("ja", 1);
+	say("ja, verhindere das anzeigen der anmeldemaske", 1);
 
 	$zeigeloginform = false;
 }

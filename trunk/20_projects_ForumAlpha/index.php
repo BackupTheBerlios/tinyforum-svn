@@ -22,72 +22,71 @@ include "functions.php";
 say("<br>INDEX.php # includen von form_login.php", 0);
 include "form_login.php";
 
-say("<br><br>INDEX.php # ist der user eingeloggt?", 0);
+say("<br>INDEX.php # ist der user eingeloggt?", 0);
 if (istEingeloggt() == true)
 {
-	say("ja<br>", 0);
+	say("ja, prüfe session-parameter", 1);
 
-	// WURDE DER ABMELDE_BUTTON ANGEKLICKT ?
-	say('INDEX.php # wurde der ABMELDE_BUTTON geklickt?', 0);
+	// WURDE DER ABMELDE_BUTTON ANGEKLICKT ? 
+	say('INDEX.php # wurde der ABMELDE_BUTTON geklickt?', 1);
 	if (isset ($_POST["abmelden"]))
 	{
-		say("ja", 0);
+		say("ja, zerstöre session und zeige anmeldebutton", 2);
 		zerstoereSession();
 		include "form_anmeldebutton.php";
 	}
 	else
 	{
 		//TODO: dieser button muss ganz unten angezeigt werden!
-		say("nein", 0);
+		say("nein, zeige form_abmeldebutton.php", 2);
 		include "form_abmeldebutton.php";
 
-		say("Soll themenFlag gelöscht werden?",0);
+		say("INDEX.php # Soll themenFlag gelöscht werden?",1);
 		//Überprüft ob der User zurück auf die Startseite will.
 		//NOCH NICHT IM ABLAUFDIAGRAMM
 		if(isset($_POST["fromthemabacktoindex"]) OR isset($_POST["benutzer"]))
 		{
-			say("ThemenFlag wurde gelöscht", 1);
+			say("ja, lösche themenflag",2);
 			session_unregister("themenFlag");
-			say("ja<br><br>",1);
 		}
 		else
 		{
-			say("nein<br><br>",1);
+			say("nein<br>",2);
 		}
-		say('INDEX.php # wurde der THEMEN_BUTTON geklickt oder ThemenFlag = true?', 0);
+		say('INDEX.php # wurde der THEMEN_BUTTON geklickt oder ThemenFlag = true?', 1);
 		// WURDE DER THEMEN_BUTTON ANGEKLICKT ? ODER WURDE Sessionvar(themenflag) im form_thema gesetzt?
 		//Noch nicht im Ablaufdiagramm erneuert
 		if (isset ($_POST["themen"]) OR isset($_SESSION["themenFlag"]))
 		{
-			say("ja", 0);
+			say("ja, zeige form_themen.php", 2);
 			echo '<hr>';
 			include "form_themen.php";
 			echo '<hr>';
 		}
 		else
 		{
-			say("nein", 0);
+			say("nein, zeige den themenbutton", 2);
 			themenbutton();
 		}
 
 		// WURDE DER BENUTZER_BUTTON ANGEKLICKT ?
-		say('INDEX.php # wurde der BENUTZER_BUTTON geklickt?', 0); 
+		say('INDEX.php # wurde der BENUTZER_BUTTON geklickt?', 1); 
 		if (isset ($_POST["benutzer"])) 
 		{
 			//Damit wird ThemenModus beendet
-			say("nein", 0);
+			say("nein, zeige form_benutzer.php", 2);
 			include "form_benutzer.php";
 		}
 		else
 		{
-			say("nein", 0);
+			say("nein, zeige den benutzerbutton", 2);
 			benutzerbutton();
 		}
 	}
 }
 else
 {
-	say("nein", 0);
+	say("nein, nichts wird gemacht", 1);
 }
 say("INDEX.php # ende", 0);
 
