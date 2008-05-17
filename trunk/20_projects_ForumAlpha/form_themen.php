@@ -61,7 +61,9 @@ elseif($_POST["BeitragSichern"])
 //Post(beitragLoeschen) wird in table_ShowBeitrage gesetzt
 elseif($_POST["beitragLoeschen"])
 {
-	echo "Löschen";
+
+	mysql_query("DELETE FROM beitraege WHERE beitragsnr=".$_POST["Showbeitragsnr"]." AND thema='".$_POST["ShowThema"]."'");
+	echo "<h4>Beitrag wurde gelöscht</h4>";
 }
 //wenn dieser Button gedrückt wird, wird im Index das LÖSCHEN des ThemenFlags veranlasst
 echo '	<form action="index.php" method="post">
