@@ -5,7 +5,6 @@ $result = @ mysql_query("SELECT beitragsnr, nickname, text, b_zeitpunkt FROM bei
 	{
 		echo "<h3> Bearbeite Beitrag </h3>";
 		echo "<table border=1>";
-		
 		while($row = mysql_fetch_assoc($result))
 		{
 			echo "<form name=records action=" . "index.php" . " method=post>";

@@ -7,7 +7,7 @@ $result = @ mysql_query("SELECT beitragsnr, nickname, text, b_zeitpunkt FROM bei
 		echo "<table border=1>";
 		while ($row = mysql_fetch_assoc($result))
 		{
-			echo "<form name=records action=" . "index.php" . " method=post>";
+			echo "<form name=beitraege action=" . "index.php" . " method=post>";
 			echo "<tr>";
 			echo "<td><label>" . $row['beitragsnr'] . "</label></td>";
 			echo "</tr>";
@@ -31,9 +31,15 @@ $result = @ mysql_query("SELECT beitragsnr, nickname, text, b_zeitpunkt FROM bei
 
 		}
 		echo "</table>";
+		echo "<form name=neueBeitraege action=" . "index.php" . " method=post>";
+		//Thema wird mitgegeben ansonten kann kein neuer eintrag in die DB eingefügt werden, denn es wäre
+		//keine Themenzuordnung möglich
+		echo "<input size=40 type=hidden name=neuThema value=" .$_POST["thema"] . ">";
+		echo "<input name=neuenBeitrag type=submit value='Neuer Beitrag'></td>";
+		echo "</form>";
 
 	} else
 	{
-		echo "Keine Beiträge zu diesem Thema vorhanden";
+		echo "<h4>Keine Beiträge zu diesem Thema vorhanden</h4>";
 	}
 ?>

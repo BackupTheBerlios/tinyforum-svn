@@ -1,4 +1,5 @@
 <?php
+session_start();
 say("<h3>Anfang form_themen.php</h3>", 0);
 echo '<font face="Lucida Fax", color=#00C0C0>';
 echo "<h2>FORM_THEMEN wird angezeigt</h2>";
@@ -65,6 +66,36 @@ elseif($_POST["beitragLoeschen"])
 	mysql_query("DELETE FROM beitraege WHERE beitragsnr=".$_POST["Showbeitragsnr"]." AND thema='".$_POST["ShowThema"]."'");
 	echo "<h4>Beitrag wurde gelöscht</h4>";
 }
+//Post(neuenBeitrag) wird in table_ShowBeitrage gesetzt
+elseif($_POST["neuenBeitrag"])
+{
+	echo "<h4>Neuer Beitrag</h4><br>";
+	echo "<form name=records action=" . "index.php" . " method=post>";
+			echo "<tr>";
+			echo "<td><textarea name=text rows=10 cols=50 wrap=off></textarea></td>";
+			echo "</tr>";
+			echo "<tr>";
+			//Mitgeliefertes Thema(von unteren Form in table_showBeiträge) wird wieder mitgeben da wenn auf sicher 
+			//geklickt wird, erst die Speicherung erfolgt und dort das Thema benötigt wird.
+			echo "<input size=40 type=hidden name=currentThema value=" .$_POST["neuThema"] . ">";
+			echo "<td><input name=neuenBeitragSpeichern type=submit value=Sichern>";
+			echo "</tr>";
+}
+elseif($_POST["neuenBeitragSpeichern"])
+{
+	$result = mysql_query("SELECT MAX(beitragsnr) as max FROM beitraege");
+	$row = mysql_fetch_assoc($result);
+	$nextId = $row['max']+1;
+	$currentDate = date("Y-m-j H:i:s");
+	$currentThema = $_POST["currentThema"];
+	$nick = $_SESSION["nickname"];
+	$btext = $_POST["text"];
+	mysql_query("INSERT INTO beitraege (beitragsnr, thema, nickname, text, b_zeitpunkt) VALUES (".$nextId.", '".$currentThema."', '".$nick."', '".$btext."', '".$currentDate."')");
+	echo "Beitrag wurde gespeichert";
+	
+
+}
+
 //wenn dieser Button gedrückt wird, wird im Index das LÖSCHEN des ThemenFlags veranlasst
 echo '	<form action="index.php" method="post">
 	  				<input type="submit" name="fromthemabacktoindex" value="zurück zur Startseite"/>
