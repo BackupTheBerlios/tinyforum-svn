@@ -42,83 +42,26 @@ if ($result)
 //Darstellung gelangt.
 if ($_POST["showBeitraege"])
 {
-	//Maybe in ein Include mit den Namen LabelTableBeitrag (no nid fix)
-	$result = @ mysql_query("SELECT beitragsnr, nickname, text, b_zeitpunkt FROM beitraege WHERE thema = '" . $_POST["thema"] . "'");
-	if ($result)
-	{
-
-		echo "<h3> Beiträge</h3>";
-		echo "<table border=1>";
-		while ($row = mysql_fetch_assoc($result))
-		{
-			echo "<form name=records action=" . "index.php" . " method=post>";
-			echo "<tr>";
-			echo "<td><label>" . $row['beitragsnr'] . "</label></td>";
-			echo "</tr>";
-			echo "<tr>";
-			echo "<td><label>" . $row['nickname'] . "</label></td>";
-			echo "</tr>";
-			echo "<tr>";
-			echo "<td><label>" . $row['b_zeitpunkt'] . "</label></td>";
-			echo "</tr>";
-			echo "<tr>";
-			echo "<td><textarea name=text rows=10 cols=50 wrap=off readonly>" . $row['text'] . "</textarea></td>";
-			echo "</tr>";
-			echo "<tr>";
-			echo "<td><input name=beitragBearbeiten type=submit value=Bearbeiten>";
-			echo "<input name=loeschen type=submit value=Löschen></td>";
-			echo "</tr>";
-			echo "<input size=40 type=hidden name=Showbetragsnr value=" . $row['beitragsnr'] . ">";
-			echo "<input size=40 type=hidden name=Shownickname value=" . $row['nickname'] . ">";
-			echo "<input size=40 type=hidden name=Showtext value=" . $row['b_zeitpunkt'] . ">";
-			echo "</form>";
-			echo "<br>";
-
-		}
-		echo "</table>";
-
-	} else
-	{
-		echo "Keine Beiträge zu diesem Thema vorhanden";
-	}
-	//möglicher inlcude ende
-
+	include "table_ShowBeitraege.php";
 }
+
+//Post(beitragBearbeiten) wird in table_ShowBeitrage gesetzt
 elseif ($_POST["beitragBearbeiten"])
 {
-	
-	echo $_POST["beitragsnr"];
-	$result2 = @ mysql_query("SELECT beitragsnr, nickname, text, b_zeitpunkt FROM beitraege WHERE thema = '" . $_POST["thema"] . "' AND beitragsnr = ". $_POST["beitragsnr"]);
-	if ($result2)
-	{
+	include "table_EditBeitrag.php";
+}
 
-		echo "<h3> Beiträge</h3>";
-		echo "<table border=1>";
-		while ($row = mysql_fetch_assoc($result2))
-		{
-			echo "<form name=records action=" . "index.php" . " method=post>";
-			echo "<tr>";
-			echo "<td><input size=40 type=text name=betragsnr value=" . $row['beitragsnr'] . "></td>";
-			echo "</tr>";
-			echo "<tr>";
-			echo "<td><input size=40 type=text name=nickname value=" . $row['nickname'] . "></td>";
-			echo "</tr>";
-			echo "<tr>";
-			echo "<td><input size=40 type=text name=text value=" . $row['b_zeitpunkt'] . "></td>";
-			echo "</tr>";
-			echo "<tr>";
-			echo "<td><textarea name=text rows=10 cols=50 wrap=off>" . $row['text'] . "</textarea></td>";
-			echo "</tr>";
-			echo "<tr>";
-			echo "<td><input name=beitragBearbeiten type=submit value=Bearbeiten>";
-			echo "<input name=loeschen type=submit value=Löschen></td>";
-			echo "</tr>";
-			echo "</form>";
-			echo "<br>";
+//Post(BeitragSichern) wird in table_EditBeitrag gesetzt
+elseif($_POST["BeitragSichern"])
+{
+	mysql_query("UPDATE beitraege SET text='".$_POST["text"]."' WHERE beitragsnr=".$_POST["Editbeitragsnr"]." AND thema='".$_POST["EditThema"]."'");
+	echo "<h4>Beitrag wurde geändert</h4>";
+}
 
-		}
-		echo "</table>";
-	}
+//Post(beitragLoeschen) wird in table_ShowBeitrage gesetzt
+elseif($_POST["beitragLoeschen"])
+{
+	echo "Löschen";
 }
 //wenn dieser Button gedrückt wird, wird im Index das LÖSCHEN des ThemenFlags veranlasst
 echo '	<form action="index.php" method="post">
