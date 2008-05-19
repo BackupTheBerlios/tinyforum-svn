@@ -99,7 +99,7 @@ elseif($_POST["neuesThema"])
 	$currentThemenDate = date("Y-m-j H:i:s");
 	mysql_query("INSERT INTO themen (thema, zugriffe, t_zeitpunkt) VALUES ('".$_POST["neuerThemenTitel"]."', 0, '".$currentThemenDate."')");
 	echo "<br><br><h3>Thema wurde gespeichert</h3>";
-	echo "<br><br><form action="."index.php". " method=post>";
+	echo "<form action="."index.php". " method=post>";
 	echo "<input type=submit value=OK>";
 	echo "</form>";
 	
