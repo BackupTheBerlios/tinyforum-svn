@@ -1,4 +1,5 @@
 <?php
+echo "<hr>";
 echo "<h4>Neuer Beitrag</h4><br>";
 	echo "<table border=1>";
 	echo "<form name=records action=" . "index.php" . " method=post>";

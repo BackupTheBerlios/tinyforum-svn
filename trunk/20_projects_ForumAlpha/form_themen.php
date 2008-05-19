@@ -22,7 +22,7 @@ if ($result)
 	while ($row = mysql_fetch_assoc($result))
 	{
 		echo "<tr>";
-		echo "<form name=records action=" . "index.php" . " method=post>";
+		echo "<form name=themen action=" . "index.php" . " method=post>";
 		echo "<td><input size=40 type=text name=thema value=" . $row['thema'] . "></td>";
 		echo "<td><input size=40 type=text name=zugriffe value=" . $row['zugriffe'] . "></td>";
 		echo "<td><input size=40 type=text name=t_zeitpunkt value=" . $row['t_zeitpunkt'] . "></td>";
@@ -31,8 +31,11 @@ if ($result)
 		echo "</tr>";
 	}
 	echo "</table>";
-
+	
 	echo "<br>";
+	echo "<form name=neuesThema action=". "index.php" . " method=post>";
+	echo "<input type=text name=neuerThemenTitel>";
+	echo "<input type=submit name=neuesThema value='Neues Thema erstellen'>";
 	echo "<br>";
 	echo "<br>";
 }
@@ -43,6 +46,12 @@ if ($result)
 //Darstellung gelangt.
 if ($_POST["showBeitraege"])
 {
+	$result = @ mysql_query("SELECT zugriffe, FROM themen WHERE thema = '".$_POST["thema"]."'");
+	$row = mysql_fetch_assoc($result);
+	$zugriffcount = $row['zugriffe'];
+	$zugriffcount = $zugriffcount+1;
+	
+	mysql_query("UPDATE themen SET zugriffe=".$zugriffcount." WHERE thema = '".$_POST["thema"]."'");
 	include "table_ShowBeitraege.php";
 }
 
@@ -85,9 +94,20 @@ elseif($_POST["neuenBeitragSpeichern"])
 	
 
 }
+elseif($_POST["neuesThema"])
+{
+	$currentThemenDate = date("Y-m-j H:i:s");
+	mysql_query("INSERT INTO themen (thema, zugriffe, t_zeitpunkt) VALUES ('".$_POST["neuerThemenTitel"]."', 0, '".$currentThemenDate."')");
+	echo "<br><br><h3>Thema wurde gespeichert</h3>";
+	echo "<br><br><form action="."index.php". " method=post>";
+	echo "<input type=submit value=OK>";
+	echo "</form>";
+	
+
+}
 
 //wenn dieser Button gedrückt wird, wird im Index das LÖSCHEN des ThemenFlags veranlasst
-echo '	<form action="index.php" method="post">
+echo '<br><br>	<form action="index.php" method="post">
 	  				<input type="submit" name="fromthemabacktoindex" value="zurück zur Startseite"/>
 				</form>';
 

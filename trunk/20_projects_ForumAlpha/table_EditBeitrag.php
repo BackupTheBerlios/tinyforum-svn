@@ -3,6 +3,7 @@ $result = @ mysql_query("SELECT beitragsnr, nickname, text, b_zeitpunkt FROM bei
 
 	if($result)
 	{
+	echo "<hr>";
 		echo "<h3> Bearbeite Beitrag </h3>";
 		echo "<table border=1>";
 		while($row = mysql_fetch_assoc($result))

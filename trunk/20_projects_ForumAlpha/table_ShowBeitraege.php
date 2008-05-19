@@ -2,7 +2,7 @@
 $result = @ mysql_query("SELECT beitragsnr, nickname, text, b_zeitpunkt FROM beitraege WHERE thema = '" . $_POST["thema"] . "'");
 	if ($result)
 	{
-
+		echo "<hr>";
 		echo "<h3> Beiträge</h3>";
 		echo "<table border=1>";
 		while ($row = mysql_fetch_assoc($result))
