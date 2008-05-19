@@ -1,4 +1,9 @@
 <?php
+/**
+ * Autoren: Edenhofer, Ragg
+ * 
+ * Hier wird die Session initalisiert. Es werden auch Session Attribute gesetzt.
+ */
 						say( 'SESSION.php # error_reporting(0);',1);
 error_reporting(0);
 						say(  'SESSION.php # session_start();',1);

@@ -1,4 +1,10 @@
 <?php
+/**
+ * Autoren: Edenhofer, Ragg
+ * 
+ * Diese Funktion wird zum Debuggen benutzt.(Da PHP Debugger nicht funktionierte)
+ * Mit Hilfe dieser Methode können wir unseren Ablauf aufzeichnen und somit auch nachverfolgen
+ */
 function say($str_message, $int_level)
 {
 	echo "<font color=".'"'."#999999".'"'.">";

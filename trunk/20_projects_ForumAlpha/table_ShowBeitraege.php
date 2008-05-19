@@ -1,4 +1,11 @@
 <?php
+/**
+ * Autoren: Edenhofer, Ragg
+ * 
+ * Diese Tabelle wird im form_themen.php verwendet. Es zeigt alle Beiträge eines bestimmten Themas an.
+ * 
+ */
+ //DB Zugriff
 $result = @ mysql_query("SELECT beitragsnr, nickname, text, b_zeitpunkt FROM beitraege WHERE thema = '" . $_POST["thema"] . "'");
 	if ($result)
 	{

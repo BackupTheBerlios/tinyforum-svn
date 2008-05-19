@@ -1,13 +1,32 @@
 <?php
+/**
+ * Autoren: Edenhofer, Ragg 4AKDVK
+ * 
+ * Dies ist der Themen- und Beitragbereich
+ * Hier können neue Themen hinzugefügt werden. Diesen Themen können Beiträge hinzugefügt werden. Diese Beiträge können gelöscht
+ * und bearbeitet werden.
+ * 
+ * Mit If-Abfragen wird entschieden, welche Teile der Seite angezeigt werden. In den If-Abfrage werden die gedrückten Buttons abgefragt.
+ * z.b: showBeitraege. Wenn diese Bedingung true ergibt wird die das php-File table_ShowBeitrage.pho eingebunden.
+ * 
+ * 
+ * 
+ */
+ 
+ 
+ 
+ 
 session_start();
 say("<h3>Anfang form_themen.php</h3>", 0);
 echo '<font face="Lucida Fax", color=#00C0C0>';
 echo "<h2>FORM_THEMEN wird angezeigt</h2>";
 echo '</font>';
 
+//Datenbankverbindung
 @ mysql_pconnect('localhost', 'root', '');
 mysql_select_db('phpforum');
 
+//Thementabelle
 $result = @ mysql_query("SELECT thema,zugriffe, t_zeitpunkt FROM themen");
 echo "<table>";
 echo "<tr>";
@@ -40,10 +59,7 @@ if ($result)
 	echo "<br>";
 }
 
-//Hidden Felder verwenden. If Abfrage über Buttons Bearbeiten und löschen. Wenn bearbeiten dann andere Table mit
-//input feldern anzeigen. Nur gültig wenn User in Session gleich erstelluser ist. Genau so wie mit Löschen.
-//Wenn falscher User soll fehlermeldung angezeigt werden. Neue Flags vielleicht Nötig um wieder zu LabelTable
-//Darstellung gelangt.
+//Zeigt Beiträge für das gewüschte Thema an
 if ($_POST["showBeitraege"])
 {
 	$result = @ mysql_query("SELECT zugriffe, FROM themen WHERE thema = '".$_POST["thema"]."'");
@@ -55,12 +71,14 @@ if ($_POST["showBeitraege"])
 	include "table_ShowBeitraege.php";
 }
 
+//Zeigt Form für die Bearbeitung eines bestimmten ausgewählten Beitrags an
 //Post(beitragBearbeiten) wird in table_ShowBeitrage gesetzt
 elseif ($_POST["beitragBearbeiten"])
 {
 	include "table_EditBeitrag.php";
 }
 
+//Führt die Speicherung des geänderten Beitrags aus
 //Post(BeitragSichern) wird in table_EditBeitrag gesetzt
 elseif($_POST["BeitragSichern"])
 {
@@ -68,6 +86,7 @@ elseif($_POST["BeitragSichern"])
 	echo "<h4>Beitrag wurde geändert</h4>";
 }
 
+//Führt die Löschung des gewünschten Beitrags aus
 //Post(beitragLoeschen) wird in table_ShowBeitrage gesetzt
 elseif($_POST["beitragLoeschen"])
 {
@@ -75,11 +94,14 @@ elseif($_POST["beitragLoeschen"])
 	mysql_query("DELETE FROM beitraege WHERE beitragsnr=".$_POST["Showbeitragsnr"]." AND thema='".$_POST["ShowThema"]."'");
 	echo "<h4>Beitrag wurde gelöscht</h4>";
 }
+//Zeigt Form für neuen Beitrag an
 //Post(neuenBeitrag) wird in table_ShowBeitrage gesetzt
 elseif($_POST["neuenBeitrag"])
 {
 	include "table_NeuerBeitrag.php";
 }
+
+//Speichert den neuen Beitrag
 elseif($_POST["neuenBeitragSpeichern"])
 {
 	$result = mysql_query("SELECT MAX(beitragsnr) as max FROM beitraege");
@@ -94,6 +116,7 @@ elseif($_POST["neuenBeitragSpeichern"])
 	
 
 }
+//Speichert ein neues Thema
 elseif($_POST["neuesThema"])
 {
 	$currentThemenDate = date("Y-m-j H:i:s");

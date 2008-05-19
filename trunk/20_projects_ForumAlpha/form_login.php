@@ -1,4 +1,10 @@
 <?php
+/**
+ * Autoren: Edenhofer, Ragg
+ * 
+ * Dieses form_login.php beinhaltet einen eigenen Ablauf. Es überprüft ob der Benutzer schon eingeloggt ist. Wenn dies nicht der Fall ist, 
+ * kann sich der Benutzer einloggen. Passwort und Username werden hier auch geprüft.
+ */
 say("FORM_LOGIN.php # start", 1);
 session_start();
 

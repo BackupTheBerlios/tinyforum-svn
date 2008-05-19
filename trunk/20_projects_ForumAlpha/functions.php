@@ -1,4 +1,10 @@
 <?php
+/**
+ * Autoren: Edenhofer, Ragg
+ * 
+ * Dies sind wichtige Funktionen, die öfters verwendet werden. Dieses php File wird weit oben in der index.php inkludiert. 
+ * 
+ */
 say( "FUNCTIONS.php # registriere die Functions",1);
 session_start();
 function istEingeloggt()

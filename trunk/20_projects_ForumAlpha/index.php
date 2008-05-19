@@ -1,11 +1,11 @@
 <?php
 
-/*
- * beschreibung, authors, etc
+/**
+ * Autoren: Edenhofer, Ragg
  * 
- * 
- * 
- * */
+ * Die index.php ist unserer Steuerseite. Diese wird von jedem Formular aufgerufen. Anhand des assoziativen PostArray oder anhand der Flags 
+ * wird der Ablauf bestimmt. Um ein besseres Verständnis für den Ablauf zu bekommen, liegt unser Ablaufdiagramm bei.
+ */
 
 include "debug.php";
 

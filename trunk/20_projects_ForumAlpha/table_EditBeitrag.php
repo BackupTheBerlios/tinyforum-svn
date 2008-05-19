@@ -1,4 +1,11 @@
 <?php
+/**
+ * Autoren: Edenhofer, Ragg
+ * 
+ * Diese Tabelle wird im form_themen.php verwendet.
+ * Dieses Formular ermöglicht es einen Beitrag zu editieren. Besser gesagt den Inhalt zu editieren. Beitragsnr, User, und Zeitpunkt der
+ * Erstellung sind nicht veränderbar
+ */
 $result = @ mysql_query("SELECT beitragsnr, nickname, text, b_zeitpunkt FROM beitraege WHERE thema = '" . $_POST["ShowThema"] . "' AND beitragsnr = ". $_POST["Showbeitragsnr"]);
 
 	if($result)

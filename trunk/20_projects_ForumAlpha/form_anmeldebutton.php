@@ -1,4 +1,9 @@
 <?php
+/**
+ * Autoren: Edenhofer, Ragg
+ * 
+ * Dies ist ein einfaches Loginfeld. Es wird in index.php verwendet
+ */
 say('FORM_LOGIN.php # ZEIGE DIE LOGINFORM.', 2);
 		echo '
 		<form action="index.php" method="post">

@@ -1,4 +1,10 @@
 <?php
+/**
+ * Autoren: Edenhofer, Ragg
+ * 
+ * Dieses Formular wird im form_themen.php verwendet. 
+ * Es dient für die Erstellung eines neuen Themenbeitrags.
+ */
 echo "<hr>";
 echo "<h4>Neuer Beitrag</h4><br>";
 	echo "<table border=1>";
